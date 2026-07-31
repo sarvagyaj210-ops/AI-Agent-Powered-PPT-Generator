@@ -68,7 +68,7 @@ def generate_image(img_prompt):
     f.write(content)
 
   from PIL import Image
-  return Image.open("Image.jpeg")
+  return url
 
 # WITH TABS
 tab1, tab2, tab3 = st.tabs(["GENERATE IMAGE","CHECK LATEST NEWS","GENERATE PPT"])
@@ -101,8 +101,7 @@ if all(ALL_API) and user_query:
       model = model,
       tools = [search_latest_info,
                generate_image
-               ]
-  )
+               ])
   
   # ===================DISPLAY AGENT=================
   # st.sidebar.image(agent)
@@ -115,8 +114,6 @@ if all(ALL_API) and user_query:
         data = f"https://image.pollinations.ai/{user_query}"
         time.sleep(3)
         st.image(data)
-        # st.image("Image.jpeg")
-        # st.return()
 
   with tab2:
     st.header("CHECK LATEST NEWS")
@@ -129,7 +126,6 @@ if all(ALL_API) and user_query:
         code = response['messages'][-1].content[-1]['text']
   
         st.html(code, width = "stretch", unsafe_allow_javascript = True)
-  -
   with tab3:
     st.header("Create PPT")
     if st.button("Click to generate: ", key = "generate_ppt_button"):
