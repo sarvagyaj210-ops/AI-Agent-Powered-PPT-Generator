@@ -111,7 +111,8 @@ if all(ALL_API) and user_query:
     if st.button("CLICK TO GENERATE: ", key = "generate_img_button"):
       with st.spinner("Running Agent..."):
         data = f"https://image.pollinations.ai/{user_query}"
-        time.sleep(3)
+        import requests as r
+        img_data = r.get(data)
         st.image(data)
 
   with tab2:
